@@ -121,11 +121,17 @@ This has been deliberately left for TODO due to lack of time.
 ## Time taken to complete
 
 I had to work on this app with a lot of interruptions because of my other activities.
+
 But overall, the first endpoints took me about 2 hours to get them working.
+
 Then I spend perhaps another couple of hours trying to fit everything into one single monstrous piece, untill I understood that I need to restructure the app more properly.
+
 Then a few days later I actullaly taken a courage to finish this assignment. 
+
 I've spent about a full day to think about the unit tests, app structure, rewrite it, put in unit tests.
+
 Then I've spent maybe a half-day to fix couple of bugs, wrap the app into a Docker image and write a Readme.
 
 Hopefully this deserves an in-house interview :) 
+
 If not, it was still a little fun project to me.
