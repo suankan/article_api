@@ -89,14 +89,14 @@ class Articles():
         tag_summary = {
             'tag' : tag_name,
             'count' : self.get_count(tag_name, date),
-            'articles' : self.get_last_article_ids(date, 10),
+            'articles' : self.get_last_article_ids(tag_name, date, 10),
             'related_tags' : self.get_related_tags(tag_name, date),
         }
 
         return tag_summary
 
-    def get_last_article_ids(self, date, n):
-        '''Returns the list of last n article ids which were submitted on the given date.
+    def get_last_article_ids(self, tag_name, date, n):
+        '''Returns the last n article ids that have tag_name on the given date.
 
         We have to make an ASSUMPTION here.
 
@@ -108,7 +108,13 @@ class Articles():
         To keep it simple, we will assume "last N articles in a given day" as last N articles that have been added to our articles registry in the same order how they were added. If there are less than N articles on a given day then just return the found amount.
         '''
 
-        return self.get_article_ids(date)[-n:]
+        result = []
+
+        for id in self.get_article_ids(date):
+            if tag_name in self.articles[id].tags:
+                result.append(id)
+
+        return result[-n:]
 
     def get_article_ids(self, date):
         '''Returns the list of article ids which were submitted on the given date.
@@ -136,21 +142,16 @@ class Articles():
         Hence we exclude it too.
         '''
 
-        result = set()
+        articles_with_tag_by_date = []
 
         for id in self.get_article_ids(date):
-            tag_name_found = False
-            for tag in self.articles[id].tags:
-                result.add(tag)
-                if tag == tag_name:
-                    tag_name_found = True
-            
-            if not tag_name_found:
-                # In this case we discard whatever we added to result.
-                result = set()
+            if tag_name in self.articles[id].tags:
+                articles_with_tag_by_date += self.articles[id].tags
 
+        result = list(set(articles_with_tag_by_date))
         result.remove(tag_name)
-        return list(result)
+
+        return result
 
     def get_count(self, tag_name, date):
         '''Returns the number of occurrences of the given tag_name across all articles submitted on the given date.

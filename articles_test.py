@@ -145,7 +145,7 @@ class TestArticlesStorage(unittest.TestCase):
 
     def test_get_article_ids(self):
         '''
-        Test that function Articles.get_last_article_ids(date, n) returns correct list of article ids. 
+        Test that function Articles.get_article_ids(date, n) returns correct list of article ids for a given date. 
         '''
 
         # Setup test
@@ -180,6 +180,27 @@ class TestArticlesStorage(unittest.TestCase):
         result = self.articles.get_count('tag0', '2016-09-23')
 
         self.assertEqual(result, 3)
+
+        # Teardown test
+        self.teardown_test()
+
+    def test_get_last_article_ids(self):
+        '''
+        Test that function Articles.get_last_article_ids(tag_name, date, n) returns the last n article ids that have tag_name on the given date.
+        '''
+
+        # Setup test
+        self.setup_test()
+        self.articles.add(self.article_0)
+        self.articles.add(self.article_1)
+        self.articles.add(self.article_2)
+        self.articles.add(self.article_3)
+        self.articles.add(self.article_4)
+
+        result = self.articles.get_last_article_ids('tag0', '2016-09-23', 2)
+        expected = [3, 4]
+
+        self.assertEqual(result, expected)
 
         # Teardown test
         self.teardown_test()
