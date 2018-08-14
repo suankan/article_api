@@ -118,3 +118,14 @@ This has been deliberately left for TODO due to lack of time.
 5. Terminology "last 10 articles entered for that day". Naturallty getting the last N articles in a given day sounds like we have to return the last N articles in chronological order. However the original task description specifies article date format without hours, minutes and seconds. To keep it simple, we will assume "last N articles in a given day" as last N articles that have been added to our articles registry in the same order how they were added. If there are less than N articles on a given day then just return the found amount.
 6. The task description for generating the tags summary says nothing on whether or not the original tag (which summary is generated for) should exist in the list of related tags. However looking at the example JSON data and example tag summagy we see that the original tag is excluded from the related tags list. Hence we exclude it too.
        
+## Time taken to complete
+
+I had to work on this app with a lot of interruptions because of my other activities.
+But overall, the first endpoints took me about 2 hours to get them working.
+Then I spend perhaps another couple of hours trying to fit everything into one single monstrous piece, untill I understood that I need to restructure the app more properly.
+Then a few days later I actullaly taken a courage to finish this assignment. 
+I've spent about a full day to think about the unit tests, app structure, rewrite it, put in unit tests.
+Then I've spent maybe a half-day to fix couple of bugs, wrap the app into a Docker image and write a Readme.
+
+Hopefully this deserves an in-house interview :) 
+If not, it was still a little fun project to me.
